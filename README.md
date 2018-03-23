@@ -187,6 +187,24 @@ Test the command by running `yarn build` or `npm run build`.
 Now instead of building every time you make a change, set up the watcher bash command to build every time you save your files.
 Add "start": "webpack --watch" to your package.json scripts.
 
+### Setup Webpack Dev Server
+
+You don't want to use the file protocol, but we do need a static file server. To do this install webpack-dev-server. It should be in your package.json file. Also open webpack config file and add the devServer entry. '/public/' represents the path on the server.
+
+When this is run, it will run a dev server on host 8080, serve files from '/public/', and also run watch which will bundle output your files each time you save. To do this run:
+   
+   $ /node_modules/.bin/webpack-dev-server
+   
+Make sure you stop watch before running this. This will start watch again anyway.
+Make it easy to run by adding "dev" to your package.json npm scripts. 
+To run: `yarn dev`
+
+## React Router
+
+Set up your file routing for your app. 
+Add BrowserRouter from your base app.js page and wrap it around your div with className ='app'. 
+Set up the file path using exact path='/' component={Landing} (if Landing is the component that will load when you hit the home page). There are more specifics that you can view in the complete-intro-to-react demo files.
+
 ## LESS
 
 [LESS](http://lesscss.org/) is a CSS preprocessor that makes it easier to organize and reuse CSS code. I use it because it is what I'm most familiar with but [SASS](http://sass-lang.com/) is also very popular among Ruby developers. I think I'll be moving into CSS Modules for React soon which will make LESS and SASS obsolete.
