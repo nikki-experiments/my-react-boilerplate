@@ -193,7 +193,7 @@ You don't want to use the file protocol, but we do need a static file server. To
 
 When this is run, it will run a dev server on host 8080, serve files from '/public/', and also run watch which will bundle output your files each time you save. To do this run:
    
-   $ /node_modules/.bin/webpack-dev-server
+   $ ./node_modules/.bin/webpack-dev-server
    
 Make sure you stop watch before running this. This will start watch again anyway.
 Make it easy to run by adding "dev" to your package.json npm scripts. 
