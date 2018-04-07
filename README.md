@@ -39,7 +39,7 @@ To update npm to the latest version run: `npm install -g npm@latest`
 
 ## Install Yarn Globally
 
-When NPM 4 was the latest, Yarn was a must because it produced a yarn.lock file that NPM didn't. There was no need to use messy shrinkwrap files. Instead Yarn locked down your dependencies for easy management. Now that NPM 5 is in use, the only real benefit of Yarn is that it still builds dependencies faster than NPM. When NPM improves speed I'll switch back to it. Until then I'll continue using Yarn.
+When NPM 4 was the latest, Yarn was a must because it produced a yarn.lock file that NPM didn't. There was no need to use messy shrinkwrap files. Instead Yarn locked down your dependencies for easy management. Now that NPM 5 is in use, the only real benefit of Yarn is that it still builds dependencies faster than NPM and it's 100% deterministic. When NPM improves speed I may switch back to it. Until then I'll continue using Yarn.
 
     $ npm install --global yarn
     
@@ -61,28 +61,28 @@ New projects:
 - Create your first React index.html file. 
 - In the root directory for that project run the following to create a new node_modules directory and package.json file.
     
- `npm init` or `yarn init`
+  Run: `yarn init` or `npm init`
     
 Existing projects:
 
 - Run `git clone path-to-project` to pull down the repo files to your local directory.
 - Run the following to add module dependencies listed in the package.json file. A package-lock.json  or yarn.lock will be created.
 
- `npm install` or `yarn`
+  Run: `yarn` or `npm install`
 
 Save a new dependency:
  
- `npm install <package name>` or `yarn add <package name>`
+  Run: `yarn add <package name>` or `npm install <package name>` 
 
-Add `--dev` to this command to save to devDependencies.
+  Add `--dev` to this command to save to devDependencies.
 
 ## Install React and ReactDom
 
-For any new React projects I'll typically install the following:
+For any new React projects the default packages needed are the following:
 
- `npm install react react-dom`
+  Run: `yarn add react react-dom` or `npm install react react-dom`
  
-Other good packages I use with my projects can be found in this [package.json template](https://github.com/nikki-experiments/dev-setup/blob/master/package-json-example.md). 
+Other packages I use with my projects can be found in my [package.json file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/package.json). 
 
 ## Install Prettier and ESLint
 
@@ -99,10 +99,11 @@ Can also install them in your project by adding all the eslint dependencies to p
 ### Set up an ESLint config file
 
 Create a file in your root directory named .eslintrc.json.
-Fill it with the config code setup from this [example template](https://github.com/nikki-experiments/dev-setup/blob/master/.eslintrc-example.md).
-Add a bash command "lint" in your NPM scripts file shown below.
+Fill it with the config code setup from this [.eslintrc file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.eslintrc.json).
+Add the bash command "lint" in your NPM scripts section of your package.json file.
 
 You can test this by running the command: `yarn lint`.
+Note: Your IDE might also have an extension for ESLint. Good idea to install the extension.
 
 ## Add NPM Scripts
 
@@ -115,7 +116,9 @@ The word on the left can be anything you want but these are standard ones. The c
         "lint": "eslint --ignore-path .gitignore --cache ./"
      }
 
-To run this on command line for example you could run: `$ npm run build` or `yarn run build` which will run webpack.
+To run this on command line for example, 
+  Run: `yarn build` or `$ npm run build` which will run webpack.
+  
 For special words like "test" and "start" running `npm test` or `npm t` will also work.
 Use the npm scripts from the package.json template file.
 
@@ -130,7 +133,7 @@ Install by addding the dev dependencies below:
 ### Write config file for Babel
 
 Now create a new file named `.babelrc` in the root directory.
-Copy the [template presets for Babel](). Inside this file you set presets which are groups of plugins. Plugins are the transformation tools.
+Add the config code from this [.babelrc file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.babelrc). This is where presets (which are groups of plugins) are set. Plugins are the transformation tools.
 
 Note: If you were still using npm scripts to run webpack you would change the command to the following:
 `"build": "webpack --module-bind 'js=babel' js/ClientApp.js public/bundle.js"`
@@ -165,7 +168,7 @@ You could add this command to your npm scripts. However it will get even longer 
 Instead of running longer commands like this, you can create a webpack config file to handle it for you.
 
 Create a new *webpack.config.js* file in the project root directory.
-Fill out the config based on the [webpack config template]().
+Fill out the config based on this [webpack config template](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/webpack.config.js).
  
 EXPLANATION OF CONFIG FILE:
 - Context: sets the root directory.
@@ -198,6 +201,19 @@ When this is run, it will run a dev server on host 8080, serve files from '/publ
 Make sure you stop watch before running this. This will start watch again anyway.
 Make it easy to run by adding "dev" to your package.json npm scripts. 
 To run: `yarn dev`
+
+## Setup Hot Module Reloader
+
+When Hot Module Reloader is setup, you won't have to continually rebuild your files to see changes made to code after you've saved your file. You will be able to save your current state while only the thing you changed gets updated and all without a hard refresh of the page. This makes for incredibly faster development. Yay!
+
+To set up HMR, open webpack file and 1) import webpack 2) change the entry object to array and add to it 3) add to devServer object 4) then add the new plugins array. Also set publicPath to the output object.
+
+Next open .babelrc and add 'react-hot-loader/babel' to the plugins array.
+
+Finally, you will have to break up your App.js file into two files so in the first file there is an entry point where you will set up HMR for development (and set any other browser based logic you will need). Name this one index.jsx. The other file named App.js will contain the single exported component also named App. 
+
+To see HMR working, restart webpack-dev-server by running: `yarn dev` or `npm run dev`.
+The files should build successfully and there will be a HMR console message. If you change anything now in your files (from App.js down) you should see the changes take effect on your page without a refresh.
 
 ## React Router
 
