@@ -14,7 +14,8 @@ Here's an outline of what we need to do.
 - [Add NPM Scripts](#add-npm-scripts)
 - [Install Babel](#install-babel)
 - [Install Webpack](#install-webpack)
-
+- [Setup Hot Module Replacement](#setup-hot-module-replacement)
+- [Other Tools](#other-tools)
 
 
 ## Install/Update Node.js
@@ -202,9 +203,9 @@ Make sure you stop watch before running this. This will start watch again anyway
 Make it easy to run by adding "dev" to your package.json npm scripts. 
 To run: `yarn dev`
 
-## Setup Hot Module Reloader
+## Setup Hot Module Replacement
 
-When Hot Module Reloader is setup, you won't have to continually rebuild your files to see changes made to code after you've saved your file. You will be able to save your current state while only the thing you changed gets updated and all without a hard refresh of the page. This makes for incredibly faster development. Yay!
+When Hot Module Replacement is setup, you won't have to continually rebuild your files to see changes made to code after you've saved your file. You will be able to save your current state while only the thing you changed gets updated and all without a hard refresh of the page. This makes for incredibly faster development. Yay!
 
 To set up HMR, open webpack file and 1) import webpack 2) change the entry object to array and add to it 3) add to devServer object 4) then add the new plugins array. Also set publicPath to the output object.
 
@@ -215,13 +216,19 @@ Finally, you will have to break up your App.js file into two files so in the fir
 To see HMR working, restart webpack-dev-server by running: `yarn dev` or `npm run dev`.
 The files should build successfully and there will be a HMR console message. If you change anything now in your files (from App.js down) you should see the changes take effect on your page without a refresh.
 
-## React Router
+## Other Tools
 
-Set up your file routing for your app. 
+The above is the bare minimum you need to setup to start your React project with the modern framework tools to make the job easier. Below are some other tools that are worthy of being included in your project.
+
+### React Router
+
+With React Router you can set up routing 
 Add BrowserRouter from your base app.js page and wrap it around your div with className ='app'. 
 Set up the file path using exact path='/' component={Landing} (if Landing is the component that will load when you hit the home page). There are more specifics that you can view in the complete-intro-to-react demo files.
 
-## LESS
+### Jest
+
+### LESS
 
 [LESS](http://lesscss.org/) is a CSS preprocessor that makes it easier to organize and reuse CSS code. I use it because it is what I'm most familiar with but [SASS](http://sass-lang.com/) is also very popular among Ruby developers. I think I'll be moving into CSS Modules for React soon which will make LESS and SASS obsolete.
 
