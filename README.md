@@ -196,8 +196,8 @@ Add "start": "webpack --watch" to your package.json scripts.
 You don't want to use the file protocol, but we do need a static file server. To do this install webpack-dev-server. It should be in your package.json file. Also open webpack config file and add the devServer entry. '/public/' represents the path on the server.
 
 When this is run, it will run a dev server on host 8080, serve files from '/public/', and also run watch which will bundle output your files each time you save. To do this run:
-   
-   $ ./node_modules/.bin/webpack-dev-server
+  
+    $ ./node_modules/.bin/webpack-dev-server
    
 Make sure you stop watch before running this. This will start watch again anyway.
 Make it easy to run by adding "dev" to your package.json npm scripts. 
@@ -234,7 +234,7 @@ The basic steps to using React Router include:
 Of the three React Router packages you will only need to install one in your project.
 If not already in package.json file, run:
 
-  $ yarn add --save react-router-dom
+    $ yarn add --save react-router-dom 
   
 #### Choose Your Router
 Choose between <HashRouter> and <BrowserRouter> components.
@@ -263,8 +263,8 @@ Write your tests here. Add "jest": true to the "env" object of your .eslintrc fi
 
 #### Run Test
 Then run the following:
-  
-  $ NODE_ENV=test ./node_modules/.bin/jest
+
+    $ NODE_ENV=test ./node_modules/.bin/jest 
  
 You can also set up npm scripts for this, `yarn test`,  such as what's in the package.json file.
 If you ran a test using .toMatchSnapshot() then you will notice a folder called __snapshots__. Inside will be everything your test rendered out. 
@@ -279,7 +279,7 @@ Enzyme is a wrapper on top of react-test-renderer.
 To see test coverage run `yarn test -u`. Make sure to include "test:coverage": "jest --coverage" in your npm scripts.
 The result will be a nice table and will build a coverage directory. To view this:
 
-  $ cd lciv-report
+    $ cd lcov-report
   
 Then `open index.html` to view the coverage table in your browser.
 
