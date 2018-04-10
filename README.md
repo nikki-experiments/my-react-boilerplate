@@ -1,6 +1,6 @@
 # React Project Setup
 
-So your about to create a new or existing React project! How fun. Follow these steps to get your [React](https://facebook.github.io/react/) project up and running quickly. A special thanks to Frontend Masters for the [Intro to react class](https://github.com/btholt/complete-intro-to-react/tree/start).
+So your about to create a new or existing React project! How fun. Follow these steps to get your [React](https://facebook.github.io/react/) project up and running quickly. A special thanks to Frontend Masters for the [Intro to react class](https://github.com/btholt/complete-intro-to-react/tree/start). [React Notes](https://btholt.github.io/complete-intro-to-react/)
 
 Here's an outline of what we need to do.
 
@@ -222,11 +222,66 @@ The above is the bare minimum you need to setup to start your React project with
 
 ### React Router
 
-With React Router you can set up routing 
-Add BrowserRouter from your base app.js page and wrap it around your div with className ='app'. 
+With React Router you can set up routing for multiple pages of your application.
+
+The basic steps to using React Router include:
+  - Choosing your router.
+  - Creating your routes.
+  - Navigating between routes using links.
+  
+#### Installation
+
+Of the three React Router packages you will only need to install one in your project.
+If not already in package.json file, run:
+
+  $ yarn add --save react-router-dom
+  
+#### Choose Your Router
+Choose between <HashRouter> and <BrowserRouter> components.
+BrowserRouter is preferred if your server will handle dynamic requests.
+  
+Add BrowserRouter from your base app.js page and wrap it around your div with className ='app'.
 Set up the file path using exact path='/' component={Landing} (if Landing is the component that will load when you hit the home page). There are more specifics that you can view in the complete-intro-to-react demo files.
+  
+#### History
+Each router creates a history object that keeps track of the current location.
+It will re-render each time this location changes.
+This object is available through React’s context.
+
+Note: Changes to Routes you’ll need to restart webpack to recognize them.
+Check out this wonderful [React Router V4 tutorial](https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf).
 
 ### Jest
+
+Use Jest to set up tests for your application. In general, testing is good if your application components or page layout will not be changing often.
+
+#### Tests Setup
+
+Create a folder called '__tests__'.
+Inside create a new file for a component that you want to test. Example: "Search.spec.jsx". 
+Write your tests here. Add "jest": true to the "env" object of your .eslintrc file. Also add the env object with "test" to your .babelrc file similar to the example .babelrc file. This needs to be done in order to let Node understand import statements and JSX in your test file.
+
+#### Run Test
+Then run the following:
+  
+  $ NODE_ENV=test ./node_modules/.bin/jest
+ 
+You can also set up npm scripts for this, `yarn test`,  such as what's in the package.json file.
+If you ran a test using .toMatchSnapshot() then you will notice a folder called __snapshots__. Inside will be everything your test rendered out. 
+
+After you make updates to markup, you can run above command again but include a -u at the end.
+This takes updated snapshot. The next time you run it your test should pass.
+
+#### Run Shallow Test Using Enzyme, and Coverage
+
+Enzyme is a wrapper on top of react-test-renderer.
+
+To see test coverage run `yarn test -u`. Make sure to include "test:coverage": "jest --coverage" in your npm scripts.
+The result will be a nice table and will build a coverage directory. To view this:
+
+  $ cd lciv-report
+  
+Then `open index.html` to view the coverage table in your browser.
 
 ### LESS
 
