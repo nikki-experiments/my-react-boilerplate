@@ -87,17 +87,17 @@ Other packages I use with my projects can be found in my [package.json file](htt
 
 ## Install Prettier and ESLint
 
-Prettier is a style formatter for your project files. To install globally:
+Prettier is a style formatter for your project files. To install:
 
-    $ npm install --global prettier
+    $ npm install -D prettier
     
 ESLint is a JavaScript linting tool. To install:
 
-    $ npm install --global eslint
+    $ npm install -D eslint
 
-Can also install these as a dev dependency. Add all the eslint dependencies to package.json. To add prettier as a dependency type:
-    
-    $ npm install -D prettier
+This will install the modules inside your node_modules folder. For ESLint you will also need to install other ESLint packages shown in this repo's package.json.
+
+You can also install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project.
 
 ### Set up an ESLint config file
 
