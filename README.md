@@ -97,6 +97,10 @@ ESLint is a JavaScript linting tool. To install:
 
 This will install the modules inside your node_modules folder. For ESLint you will also need to install other ESLint packages shown in this repo's package.json.
 
+To run prettier from node_modules folder on a file called App.:
+
+    $ npx prettier App.js
+
 You can also install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project.
 
 ### Set up an ESLint config file
