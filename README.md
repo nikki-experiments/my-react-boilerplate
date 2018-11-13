@@ -87,7 +87,7 @@ Other packages I use with my projects can be found in my [package.json file](htt
 
 ## Install Prettier and ESLint
 
-Prettier is a style formatter for your project files. To install:
+Prettier is a style formatter for your project files. To install globally:
 
     $ npm install --global prettier
     
@@ -95,7 +95,9 @@ ESLint is a JavaScript linting tool. To install:
 
     $ npm install --global eslint
 
-Can also install them in your project by adding all the eslint dependencies to package.json.
+Can also install these as a dev dependency. Add all the eslint dependencies to package.json. To add prettier as a dependency type:
+    
+    $ npm install -D prettier
 
 ### Set up an ESLint config file
 
