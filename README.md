@@ -93,7 +93,7 @@ Prettier is a style formatter for your project files. To install:
     
 ESLint is a JavaScript linting tool. To install:
 
-    $ npm install -D eslint
+    $ npm install -D eslint eslint-config-prettier eslint-plugin-prettier
 
 This will install the modules inside your node_modules folder. For ESLint you will also need to install other ESLint packages shown in this repo's package.json. 
 
