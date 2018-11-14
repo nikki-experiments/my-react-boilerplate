@@ -95,13 +95,32 @@ ESLint is a JavaScript linting tool. To install:
 
     $ npm install -D eslint
 
-This will install the modules inside your node_modules folder. For ESLint you will also need to install other ESLint packages shown in this repo's package.json.
-
-To run prettier from node_modules folder on a file called App.:
-
-    $ npx prettier App.js
+This will install the modules inside your node_modules folder. For ESLint you will also need to install other ESLint packages shown in this repo's package.json. 
 
 You can also install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project.
+
+### Set up an Prettier config file
+
+You can set up a prettier config file so that each time you save your file, prettier will format it.
+Otherwise you'd have to run $ npx prettier YourFile.js each time you wanted to format a file.
+
+Create a file in your root directory named .prettierrc with an empty object in it.
+Also add the extension to your editor (vscode uses Prettier - Code formatter).
+
+In vscode settings add the following: 
+
+	"prettier.requireConfig": true,
+	"prettier.printWidth": 80,
+	"editor.formatOnSave": true
+  
+The requireConfig means that if a project has the prettierrc file, run formatting. If it doesn't, then it won't format your files.
+
+If you don't want to format every time you save then add a script to run Prettier.
+Add the following to package.json: "format": "prettier --write \"src/**/* .{js,jsx,css,json}\""
+Then to format your files type:
+
+    $ npm run format
+
 
 ### Set up an ESLint config file
 
