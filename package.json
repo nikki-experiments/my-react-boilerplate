@@ -4,7 +4,7 @@
     "build": "webpack",
     "dev": "webpack-dev-server",
     "format": "prettier --write --single-quote --print-width=120 --no-semi --parser=flow --tab-width=2 \"js/**/*.{js,jsx}\"",
-    "lint": "eslint **/*.{js,jsx} --quiet",
+    "lint": "eslint \"**/*.{js,jsx}\"",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "test:update": "jest -u",
