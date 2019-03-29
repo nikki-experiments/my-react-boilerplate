@@ -33,6 +33,8 @@ Note 1: I didn't have issues but if you do, don't use homebrew and install node 
 Note 2: If you need to use different node versions on your machine install [nvm](https://github.com/creationix/nvm) (node version manager). Verify it's installed by running: `command -v nvm`.
 Use this [web page](https://davidwalsh.name/nvm) to learn how to easily use nvm. 
 
+How to upgrade to the [latest version of Node](https://flaviocopes.com/how-to-update-node/).
+
 ## Update NPM to latest version
 
 NPM comes installed with Node.js. 
