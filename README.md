@@ -187,7 +187,7 @@ You can also add the following as needed when installing babel dependencies: bab
 ### Write config file for Babel
 
 Now create a new file named `.babelrc` in the root directory.
-Add the config code from this [.babelrc file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.babelrc). This is where presets (which are groups of plugins) are set. Plugins are the transformation tools.
+Add the config code from this [.babelrc file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.babelrc). This is where presets (which are groups of plugins) are set. Plugins are the transformation tools. The *env* transformation will convert ES6 JavaScript to standard JavaScript that's compatible with all browsers and the *react* transformation will compile JSX code down to createElement() function calls.
 
 Note: If you were still using npm scripts to run webpack you would change the command to the following:
 `"build": "webpack --module-bind 'js=babel' js/ClientApp.js public/bundle.js"`
@@ -235,6 +235,7 @@ EXPLANATION OF CONFIG FILE:
 - Stats: Info configuration.
 - Module: specifies a regular expression that runs Babel transformations only for js files.
 - Loaders: are transformations applied on a file in our app. The key property takes on an array of loaders.
+- Plugins: contains any special operations we want performed during the build process.
 
 Check the [Webpack documentation](https://webpack.github.io/docs/list-of-loaders.html) for more potential loaders you can use.
 
