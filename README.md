@@ -1,15 +1,18 @@
 # React Project Setup
 
-So your about to create a new or existing React project! How fun. Follow these steps to get your [React](https://facebook.github.io/react/) project up and running quickly. A special thanks to Frontend Masters for the [Intro to react class](https://github.com/btholt/complete-intro-to-react/tree/start). [React Notes](https://btholt.github.io/complete-intro-to-react/)
+So your about to create a new React project! How fun. 
+
+Follow these steps to get your [React](https://facebook.github.io/react/) project up and running quickly. A special thanks to Frontend Masters for the [Intro to react class](https://github.com/btholt/complete-intro-to-react/tree/start). [React Notes](https://btholt.github.io/complete-intro-to-react/)
 
 Here's an outline of what we need to do.
 
 - [Install Node.js](#Install/Update-Node.js)
 - [Update NPM](#update-npm-to-latest-version)
+- [Decide Between Manual or Auto Configuration](#decide-between-manual-or-auto-configuration)
 - [Install Yarn](#install-yarn-globally)
-- [Create Root Project Files](#create-root-project-files)
 - [Install Dependencies](#install-dependencies)
 - [Install React and React-Dom](#install-react-and-reactdom)
+- [Create Root Project Files](#create-root-project-files)
 - [Install Prettier and ESLint](#install-prettier-and-eslint)
 - [Add NPM Scripts](#add-npm-scripts)
 - [Install Babel](#install-babel)
@@ -20,9 +23,9 @@ Here's an outline of what we need to do.
 
 ## Install/Update Node.js
 
-Node is a server framework that allows for asynchronous JavaScript programming on the server. Node files (.js files) must be initiated in the command line. You can include modules in your application. Most notably is NPM (a package manager for Node).
+Node is a server framework that allows for asynchronous JavaScript programming on the server. Node files (.js files) must be initiated in the command line. You can include modules in your application. NPM (a package manager for Node) is included with Node.js.
 
-Make sure Node.js is installed. With Homebrew just run the following:
+First make sure Node.js is installed. With Homebrew just run the following:
 
     $ brew install node
     
@@ -40,6 +43,26 @@ How to upgrade to the [latest version of Node](https://flaviocopes.com/how-to-up
 NPM comes installed with Node.js. 
 To update npm to the latest version run: `npm install -g npm@latest`
 
+## Decide Between Manual or Auto Configuration
+
+Create-React-App:
+
+You have two choices to set up your project. You can create a simple app with a user-friendly full build setup that requires no manual configuration at all. To do this, simply install create-react-app.
+
+    $ npm -g create-react-app
+  
+This will install it globally so you can access from any directory. Then simply name your project, navigate to the new project directory, and run the npm start script. A new browser window will open and after a few seconds, your react app will be displayed.
+  
+    $ create-react-app my-first-components
+    $ cd my-first-components/
+    $ npm start
+    
+Create-react-app includes a mini web server and also watches the files in your app for changes. When a change is made, your app is rebuilt and your browser automatically reloads to display the updated app.
+
+Manual Project Configuration:
+
+You may find that your project needs custom configuration of the setup files. In that case you'd need to setup the React build tools manually. Follow the remaining sections in order to do that.
+
 ## Install Yarn Globally
 
 When NPM 4 was the latest, Yarn was a must because it produced a yarn.lock file that NPM didn't. There was no need to use messy shrinkwrap files. Instead Yarn locked down your dependencies for easy management. Now that NPM 5 is in use, the only real benefit of Yarn is that it still builds dependencies faster than NPM and it's 100% deterministic. When NPM improves speed I may switch back to it. Until then I'll continue using Yarn.
@@ -50,23 +73,15 @@ Then check that you installed it properly.
 
     $ yarn --version
     
-## Create Root Project Files
-
-Add a index.html and make sure it has at least one div with id="app".
-Add script tag with src="js/bundle.js"
-
-Add app.js file. This will contain your import statements for react and react-dom {render}.
-
 ## Install Dependencies
 
-New projects:
+For new projects:
 
-- Create your first React index.html file. 
 - In the root directory for that project run the following to create a new node_modules directory and package.json file.
     
   Run: `yarn init` or `npm init`
     
-Existing projects:
+For existing projects:
 
 - Run `git clone path-to-project` to pull down the repo files to your local directory.
 - Run the following to add module dependencies listed in the package.json file. A package-lock.json  or yarn.lock will be created.
@@ -77,7 +92,7 @@ Save a new dependency:
  
   Run: `yarn add <package name>` or `npm install <package name>` 
 
-  Add `--dev` to this command to save to devDependencies.
+  Add `--dev` or `-D` to this command to save to devDependencies.
 
 ## Install React and ReactDom
 
@@ -86,6 +101,13 @@ For any new React projects the default packages needed are the following:
   Run: `yarn add react react-dom` or `npm install react react-dom`
  
 Other packages I use with my projects can be found in my [package.json file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/package.json). 
+
+## Create Root Project Files
+
+Create an index.html and make sure it has at least one div with id="app".
+Add script tag with src="js/bundle.js"
+
+Create an index.js file. This will contain your import statements for react and react-dom {render}.
 
 ## Install Prettier and ESLint
 
@@ -156,7 +178,11 @@ Babel takes es6 (future JavaScript) and compiles it down to es5 (current JavaScr
 
 Install by addding the dev dependencies below:
 
-    $ yarn add babel-loader babel-core babel-eslint babel-plugin-dynamic-import-node babel-plugin-syntax-dynamic-import babel-plugin-transform-class-properties babel-plugin-transform-es2015-modules-commonjs babel-preset-env babel-preset-react --dev 
+    $ yarn add babel-loader babel-core babel-preset-env babel-preset-react -D
+    
+These are the basic modules needed for Babel to compile ES6 and JSX code down to standard JavaScript.
+    
+You can also add the following as needed when installing babel dependencies: babel-eslint babel-plugin-dynamic-import-node babel-plugin-syntax-dynamic-import babel-plugin-transform-class-properties babel-plugin-transform-es2015-modules-commonjs
 
 ### Write config file for Babel
 
@@ -175,6 +201,8 @@ Webpack takes all components that you’ve created puts it together in one bundl
 To install: 
 
     $ yarn add webpack (or run $ npm install --global webpack)
+    
+You can also add the following dependencies: webpack-dev-server and html-webpack-plugin.
     
 Now you could run a command to convert your React files into your final js file. Make sure you are in your project's root directory. 
 
@@ -200,12 +228,12 @@ Fill out the config based on this [webpack config template](https://github.com/n
  
 EXPLANATION OF CONFIG FILE:
 - Context: sets the root directory.
-- Entry: is the file where the bundler starts the bundling process.
-- Output: is the location where the bundled JS file will be saved.
+- Entry: is the file where the bundler starts the bundling process (index.js).
+- Output: is the filename and location where the bundled JS file will be saved.
 - Devtool: Uses source maps.
 - Resolve: Tells webpack which files to add to bundle and in a particular order.
 - Stats: Info configuration.
-- Module: Rules for webpack.
+- Module: specifies a regular expression that runs Babel transformations only for js files.
 - Loaders: are transformations applied on a file in our app. The key property takes on an array of loaders.
 
 Check the [Webpack documentation](https://webpack.github.io/docs/list-of-loaders.html) for more potential loaders you can use.
