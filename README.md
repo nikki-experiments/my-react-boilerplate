@@ -178,21 +178,14 @@ Babel takes es6 (future JavaScript) and compiles it down to es5 (current JavaScr
 
 Install by addding the dev dependencies below:
 
-    $ yarn add babel-loader babel-core babel-preset-env babel-preset-react -D
+    $ yarn add @babel/core @babel/preset-env @babel/cli -D
     
-These are the basic modules needed for Babel to compile ES6 and JSX code down to standard JavaScript.
-    
-You can also add the following as needed when installing babel dependencies: babel-eslint babel-plugin-dynamic-import-node babel-plugin-syntax-dynamic-import babel-plugin-transform-class-properties babel-plugin-transform-es2015-modules-commonjs
+These are the basic modules needed for Babel to compile ES6 and JSX code down to standard JavaScript. However, check the [Babel website](https://babeljs.io/docs/en/usage) for the latest versions to install. 
 
 ### Write config file for Babel
 
 Now create a new file named `.babelrc` in the root directory.
-Add the config code from this [.babelrc file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.babelrc). This is where presets (which are groups of plugins) are set. Plugins are the transformation tools. The *env* transformation will convert ES6 JavaScript to standard JavaScript that's compatible with all browsers and the *react* transformation will compile JSX code down to createElement() function calls.
-
-Note: If you were still using npm scripts to run webpack you would change the command to the following:
-`"build": "webpack --module-bind 'js=babel' js/ClientApp.js public/bundle.js"`
-
-However this is getting long so you should change remove everything after webpack and set up a webpack config file described in the next section.
+Add the config code from the [Babel website](https://babeljs.io/docs/en/babel-preset-react#docsNav) and add appropriate presets for React. Presets are groups of plugins. Plugins are the transformation tools. The *env* transformation will convert ES6 JavaScript to standard JavaScript that's compatible with all browsers and the *react* transformation will compile JSX code down to createElement() function calls.
 
 ## Install Webpack
 
