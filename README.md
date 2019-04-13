@@ -161,7 +161,8 @@ Open your package.json file and add bash commands to make your longer commands s
 The word on the left can be anything you want but these are standard ones. The command on the right is what will actually run.
 
     "scripts": {
-        "build": "webpack"
+        "build": "webpack --mode production",
+        "dev": "webpack-dev-server --mode development",
         "start": "node server.js"
         "lint": "eslint --ignore-path .gitignore --cache ./"
      }
