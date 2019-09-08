@@ -2,6 +2,8 @@
 
 So your about to create a new React project! How fun. 
 
+When I'm creating a simple small React project mainly for a quick demo I'll use [create-react-app](https://create-react-app.dev/docs/getting-started). If I'm building something where I need a few more tools I might follow the steps below and use [Parceljs](https://parceljs.org/) as my no-config bundler instead of Webpack. However if I wanted to build something with full scalability I would use webpack and follow the steps below.
+
 Follow these steps to get your [React](https://facebook.github.io/react/) project up and running quickly. A special thanks to Frontend Masters for the [Intro to react class](https://github.com/btholt/complete-intro-to-react/tree/start). [React Notes](https://btholt.github.io/complete-intro-to-react/)
 
 Here's an outline of what we need to do.
