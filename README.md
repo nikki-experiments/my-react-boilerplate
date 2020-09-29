@@ -49,17 +49,18 @@ To update npm to the latest version run: `npm install -g npm@latest`
 
 Create-React-App:
 
-You have two choices to set up your project. You can create a simple app with a user-friendly full build setup that requires no manual configuration at all. To do this, simply install create-react-app.
+You have two choices to set up your project. You can create a simple app with a user-friendly full build setup that requires no manual configuration at all. To do this, simply use create-react-app.
 
-    $ npm -g create-react-app
+First navigate to your desired project directory.
+
+    $ npx create-react-app my-app
   
-This will install it globally so you can access from any directory. Then simply name your project, navigate to the new project directory, and run the npm start script. A new browser window will open and after a few seconds, your react app will be displayed.
+This will use the latest version of create-react-app and create a repo for you. Then navigate to your new repo root and run the start script.
   
-    $ create-react-app my-first-components
     $ cd my-first-components/
     $ npm start
     
-Create-react-app includes a mini web server and also watches the files in your app for changes. When a change is made, your app is rebuilt and your browser automatically reloads to display the updated app.
+Create-react-app includes a mini web server and also watches the files in your app for changes. When a change is made, your app is rebuilt and your browser automatically reloads to display the updated app. For more info, read the [create-react-app documentation](https://create-react-app.dev/docs/getting-started/).
 
 Manual Project Configuration:
 
