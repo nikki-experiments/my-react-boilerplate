@@ -60,7 +60,12 @@ This will use the latest version of create-react-app and create a repo for you. 
     $ cd my-first-components/
     $ npm start
     
-Create-react-app includes a mini web server and also watches the files in your app for changes. When a change is made, your app is rebuilt and your browser automatically reloads to display the updated app. For more info, read the [create-react-app documentation](https://create-react-app.dev/docs/getting-started/).
+Create-react-app includes a mini web server, Babel, and Webpack. It also watches the files in your app for changes. When a change is made, your app is rebuilt and your browser automatically reloads to display the updated app. For more info, read the [create-react-app documentation](https://create-react-app.dev/docs/getting-started/).
+
+If you want to add to the configuration tools, you can eject create-react-app by running:
+```
+npm run eject
+```
 
 Manual Project Configuration:
 
@@ -107,10 +112,18 @@ Other packages I use with my projects can be found in my [package.json file](htt
 
 ## Create Root Project Files
 
-Create an index.html and make sure it has at least one div with id="app".
-Add script tag with src="js/bundle.js"
+1. Create 2 folders in root: src and public. (the third should be the node modules folder).
+2. Create an index.html and make sure it has at least one div with id="root". Add script tag with src="js/bundle.js" Move this to the public folder.
+3. Create an index.js file. This will contain your import statements for react and react-dom {render}. Move this to the src folder.
+4. To set up your first component in the index.js file add: 
 
-Create an index.js file. This will contain your import statements for react and react-dom {render}.
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const App = <h1>Hello World</h1>
+ReactDOM.render(App, document.getElementById('root'));
+```
 
 ## Install Prettier and ESLint
 
