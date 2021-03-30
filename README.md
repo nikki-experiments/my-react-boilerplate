@@ -53,7 +53,7 @@ You have two choices to set up your project. You can create a simple app with a 
 
 First navigate to your desired project directory.
 
-    $ npx create-react-app my-app
+    $ npx create-react-app@latest my-app
   
 This will use the latest version of create-react-app and create a repo for you. Then navigate to your new repo root and run the start script.
   
