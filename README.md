@@ -110,6 +110,7 @@ When it's time to build your production files do this:
 ```
 
 Parcel will compile, minify and bundle all your final production files.
+After this move on to the step for installing Babel for transpiling your code from ES6 down to readable ES5.
 
 
 ### Manual Project Configuration (Webpack/Babel)
@@ -240,7 +241,8 @@ Babel takes es6 (future JavaScript) and compiles it down to es5 (current JavaScr
 
 Install by addding the dev dependencies below:
 
-    $ yarn add @babel/core @babel/preset-env @babel/cli -D
+    $ npm i --save-dev @babel/core @babel/preset-env @babel/cli
+    $ npm i --save @babel/polyfill
     
 These are the basic modules needed for Babel to compile ES6 and JSX code down to standard JavaScript. However, check the [Babel website](https://babeljs.io/docs/en/usage) for the latest versions to install. 
 
@@ -248,6 +250,28 @@ These are the basic modules needed for Babel to compile ES6 and JSX code down to
 
 Now create a new file named `.babelrc` in the root directory.
 Add the config code from the [Babel website](https://babeljs.io/docs/en/babel-preset-react#docsNav) and add appropriate presets for React. Presets are groups of plugins. Plugins are the transformation tools. The *env* transformation will convert ES6 JavaScript to standard JavaScript that's compatible with all browsers and the *react* transformation will compile JSX code down to createElement() function calls.
+
+### Polyfilling
+
+Some experimental features of JS may not yet get transpiled by Babel. For example Promise.resolve() is at this time not yet supported. So in the build file it will not be converted. You may have to install core-js then, import 'core-js/stable' in your project. This should polyfill JS features that are not transpiled even if your not using them. For example all Array.prototype ES6 features like .map, .filter, .find, etc... will be defined and allowed for use. You can cherry pick those if you want to help reduce the bundle size of your project.
+
+```
+import 'core-js/stable; // get all polyfills    OR
+import 'core-js/stable/array/find; // if you want to be specific for what you need in your project.
+import 'core-js/stable/promise';
+```
+
+### Polyfilling async functions
+
+```
+npm i regenerator-runtime
+```
+
+Then import in script.js
+
+```
+import 'regenerator-runtime/runtime';
+```
 
 ## Install Webpack
 
