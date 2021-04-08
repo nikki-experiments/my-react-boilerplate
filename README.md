@@ -67,7 +67,7 @@ If you want to add to the configuration tools, you can eject create-react-app by
 npm run eject
 ```
 
-**Parcel.js**
+### Parcel.js
 
 Parcel is a no-config bundler that can help you get a project up and running quickly. To use, you would create your repo normally using `npm init` to create package.json files. Then you can install it as a dev dependency in your project. In case you have problems installing parcel, use sudo to enter username/password.
 
@@ -112,13 +112,13 @@ When it's time to build your production files do this:
 Parcel will compile, minify and bundle all your final production files.
 
 
-**Manual Project Configuration (Webpack/Babel)**
+### Manual Project Configuration (Webpack/Babel)
 
 You may find that your project needs custom configuration of the setup files. In that case you'd need to setup the React build tools manually. Follow the remaining sections in order to do that.
 
 ## Install Yarn Globally
 
-When NPM 4 was the latest, Yarn was a must because it produced a yarn.lock file that NPM didn't. There was no need to use messy shrinkwrap files. Instead Yarn locked down your dependencies for easy management. Now that NPM 5 is in use, the only real benefit of Yarn is that it still builds dependencies faster than NPM and it's 100% deterministic. When NPM improves speed I may switch back to it. Until then I'll continue using Yarn.
+When NPM 4 was the latest, Yarn was a must because it produced a yarn.lock file that NPM didn't have. There was no need to use messy shrinkwrap files. Instead Yarn locked down your dependencies for easy management. Now that NPM 5 is in use, the only real benefit of Yarn is that it still builds dependencies faster than NPM and it's 100% deterministic. I've gotten used to using npm now so it's really just a preference if you want to use Yarn over NPM.
 
     $ npm install --global yarn
     
