@@ -47,9 +47,9 @@ To update npm to the latest version run: `npm install -g npm@latest`
 
 ## Decide Between Manual or Auto Configuration
 
-Create-React-App:
+You have two choices to set up your project. You can create a simple app with a user-friendly full build setup that requires no manual configuration at all. Or you can create a configurable bundler/transpiler that can scale as your project scales. When I'm doing small POC, I use **create-react-app**. If I'm doing something a little bigger, I migtht set up my project using **Parcel.js**. Finally if this is going to be a fully scalable project I'll install **Babel** and **Webpack**. Instructions for all options are below.
 
-You have two choices to set up your project. You can create a simple app with a user-friendly full build setup that requires no manual configuration at all. To do this, simply use create-react-app.
+### Create-React-App:
 
 First navigate to your desired project directory.
 
@@ -57,17 +57,62 @@ First navigate to your desired project directory.
   
 This will use the latest version of create-react-app and create a repo for you. Then navigate to your new repo root and run the start script.
   
-    $ cd my-first-components/
+    $ cd my-app/
     $ npm start
     
 Create-react-app includes a mini web server, Babel, and Webpack. It also watches the files in your app for changes. When a change is made, your app is rebuilt and your browser automatically reloads to display the updated app. For more info, read the [create-react-app documentation](https://create-react-app.dev/docs/getting-started/).
 
-If you want to add to the configuration tools, you can eject create-react-app by running:
+If you want to add to the configuration tools, you can eject create-react-app by running the following script. Beware, that this can't be undone.
 ```
 npm run eject
 ```
 
-Manual Project Configuration:
+**Parcel.js**
+
+Parcel is a no-config bundler that can help you get a project up and running quickly. To use, you would create your repo normally using `npm init` to create package.json files. Then you can install it as a dev dependency in your project. In case you have problems installing parcel, use sudo to enter username/password.
+
+```
+(sudo) npm i parcel --save-dev
+```
+
+Make sure your script tag for your entry js file looks like this in the head tag of your index file.
+
+```
+<script defer src="script.js"></script>
+```
+
+Next you can start parcel by either running in command line or by setting your script file to run:
+
+```
+npx parcel index.html // in command line
+
+scripts: {
+  "start": "parcel index.html"  // add new script to package.json
+}
+```
+
+Index.html is our entry point. Our modules will get bundled together and it will start a new development server. Click that in the console to open in the browser(similar to the live-server). It will just be on a different port as live-server. You only need one to develop. Parcel will create a dist folder (distribution) for our production code. Inside will be a new index.html file with the bundled script file.
+
+You can set up **hot module reloading/replacement** by adding this to your main script.js file. Hot module reloading happens when you make changes to your file, HMR will trigger a rebuild and the new files will automatically get injected into the browser to allow for live updates without triggering whole page reload.
+
+```
+if(module.hot) {
+  module.hot.accept()
+}
+```
+
+Web bundlers allow you to only specify the package during imports and will automatically find the path to that in the node_modules folder.
+
+When it's time to build your production files do this:
+
+```
+"build": parcel build index.html // add script to package.json
+```
+
+Parcel will compile, minify and bundle all your final production files.
+
+
+**Manual Project Configuration (Webpack/Babel)**
 
 You may find that your project needs custom configuration of the setup files. In that case you'd need to setup the React build tools manually. Follow the remaining sections in order to do that.
 
