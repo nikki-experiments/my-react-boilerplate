@@ -10,8 +10,8 @@ Here's an outline of what we need to do.
 
 - [Install Node.js](#Install/Update-Node.js)
 - [Update NPM](#update-npm-to-latest-version)
-- [Decide Between Manual or Auto Configuration](#decide-between-manual-or-auto-configuration)
 - [Install Yarn](#install-yarn-globally)
+- [Decide Between Manual or Auto Configuration](#decide-between-manual-or-auto-configuration)
 - [Install Dependencies](#install-dependencies)
 - [Install React and React-Dom](#install-react-and-reactdom)
 - [Create Root Project Files](#create-root-project-files)
@@ -44,6 +44,16 @@ How to upgrade to the [latest version of Node](https://flaviocopes.com/how-to-up
 
 NPM comes installed with Node.js. 
 To update npm to the latest version run: `npm install -g npm@latest`
+
+## Install Yarn Globally
+
+When NPM 4 was the latest, Yarn was a must because it produced a yarn.lock file that NPM didn't have. There was no need to use messy shrinkwrap files. Instead Yarn locked down your dependencies for easy management. Now that NPM 5 is in use, the only real benefit of Yarn is that it still builds dependencies faster than NPM and it's 100% deterministic. I've used both w/equal success so check w/your teams preference.
+
+    $ npm install --global yarn
+    
+Then check that you installed it properly.
+
+    $ yarn --version
 
 ## Decide Between Manual or Auto Configuration
 
@@ -116,16 +126,6 @@ After this move on to the step for installing Babel for transpiling your code fr
 ### Manual Project Configuration (Webpack/Babel)
 
 You may find that your project needs custom configuration of the setup files. In that case you'd need to setup the React build tools manually. Follow the remaining sections in order to do that.
-
-## Install Yarn Globally
-
-When NPM 4 was the latest, Yarn was a must because it produced a yarn.lock file that NPM didn't have. There was no need to use messy shrinkwrap files. Instead Yarn locked down your dependencies for easy management. Now that NPM 5 is in use, the only real benefit of Yarn is that it still builds dependencies faster than NPM and it's 100% deterministic. I've gotten used to using npm now so it's really just a preference if you want to use Yarn over NPM.
-
-    $ npm install --global yarn
-    
-Then check that you installed it properly.
-
-    $ yarn --version
     
 ## Install Dependencies
 
