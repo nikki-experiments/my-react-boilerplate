@@ -57,9 +57,11 @@ Then check that you installed it properly.
 
 ## Decide Between Manual or Auto Configuration
 
-You have two choices to set up your project. You can create a simple app with a user-friendly full build setup that requires no manual configuration at all. Or you can create a configurable bundler/transpiler that can scale as your project scales. When I'm doing small POC, I use **create-react-app**. If I'm doing something a little bigger, I migtht set up my project using **Parcel.js**. Finally if this is going to be a fully scalable project I'll install **Babel** and **Webpack**. Instructions for all options are below.
+You have two choices to set up your project. You can create a simple app with a user-friendly full build setup that requires no manual configuration at all. Or you can create a configurable bundler/transpiler that can scale as your project scales. When I'm doing small React POC, I use **create-react-app**. If I'm doing a tools POC or building something a little bigger, I migtht set up my project using **Parcel.js**. Finally if this is going to be a fully scalable enterprise level project I'll install **Babel** and **Webpack**. Instructions for all options are below.
 
 ### Create-React-App:
+
+Again, this is for quick POC single page apps that are NOT meant to scale. It doesn't handle backend logic or databases, so you can use it w/any backend you want. It just creates a front end build pipeline. To deploy to production you can use
 
 First navigate to your desired project directory.
 
@@ -71,6 +73,8 @@ This will use the latest version of create-react-app and create a repo for you. 
     $ npm start
     
 Create-react-app includes a mini web server, Babel, and Webpack. It also watches the files in your app for changes. When a change is made, your app is rebuilt and your browser automatically reloads to display the updated app. For more info, read the [create-react-app documentation](https://create-react-app.dev/docs/getting-started/).
+
+To deploy to production run `npm run build` to create an optimized build of your app in the build folder.
 
 If you want to add to the configuration tools, you can eject create-react-app by running the following script. Beware, that this can't be undone.
 ```
