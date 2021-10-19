@@ -177,52 +177,60 @@ ReactDOM.render(App, document.getElementById('root'));
 
 ## Install Prettier and ESLint
 
-### Install as dependency vs VScode extension
+### Install as dev dependency vs VScode extension
 
 Both eslint and prettier are available as extension in VScode. So why should we install with our project as a dependency? The main advantage is so that devs who might work on the repo in the future and might not be using VScode would know that this is prettier and eslint project. They could get benefits just by using yarn install.
+
+### Installing Prettier
+
+[Prettier](https://prettier.io/) is a style formatter for your project files. To install:
+
+    $ npm install -D prettier
+
+### Installing Eslint
+
+[ESLint](https://eslint.org/) is a JavaScript linting tool. To install:
+
+    $ npm install -D eslint
+
+These modules will be installed inside your node_modules folder.
+
+### Global Installs
+
+*Note: There is an option to install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project. However, when developing in companies this might not be the best workflow.*
 
 ### Add VScode Extension
 
 In VScode, add the following extensions:
 
-- ESLint by Dirk Baeumer
-- Prettier - Code formatter by Prettier
+- **ESLint** by Dirk Baeumer
+- **Prettier - Code formatter** by Prettier
 
-### Installing Prettier and Eslint
-
-Prettier is a style formatter for your project files. To install:
-
-    $ npm install -D prettier
-
-ESLint is a JavaScript linting tool. To install:
-
-    $ npm install -D eslint eslint-config-prettier eslint-plugin-prettier
-
-This will install the modules inside your node_modules folder. For ESLint you will also need to install other ESLint packages shown in this repo's package.json.
-
-You can also install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project.
-
-### Set up an Prettier config file
-
-You can set up a prettier config file so that each time you save your file, prettier will format it.
-Otherwise you'd have to run $ npx prettier YourFile.js each time you wanted to format a file.
-
-Create a file in your root directory named .prettierrc with an empty object in it.
-Also add the extension to your editor (vscode uses Prettier - Code formatter).
-
-In vscode settings add the following:
+Open VScode settings (CMD+SHIFT+P) add the following:
 
 	"prettier.requireConfig": true,
-	"prettier.printWidth": 80,
 	"editor.formatOnSave": true
 
-The requireConfig means that if a project has the prettierrc file, run formatting. If it doesn't, then it won't format your files.
+The requireConfig means that if a project has the .prettierrc file, run formatting. If it doesn't, then it won't format your files.
 
-If you don't want to format every time you save then add a script to run Prettier.
-Add the following to package.json: "format": "prettier --write \"src/**/* .{js,jsx,css,json}\""
+### Configuring Prettier
+
+**Why do you need a config?**
+You can set up a prettier config file so that each time you save your file, prettier will format it. Otherwise you'd have to run $ npx prettier YourFile.js each time you wanted to format a file.
+
+To create your config file:
+
+	$ touch .prettierrc
+    // add empty object to the file for prettier defaults {}
+
+*Note: There is an order of precedence when naming your config file. For example, .prettierrc will take precedence over .prettierrc.json. We can use JSON for both of those. Refer to [prettier config documentation](https://prettier.io/docs/en/configuration.html).*
+
+### Format onSave vs NPM Scripts
+
+If you don't want to format every time you save then add a script to run Prettier in package.json: "format": "prettier --write \"src/**/* .{js,jsx,css,json}\""
 Then to format your files type:
 
-    $ npm run format
+    $ npm run format [(optional) specific file name]
 
 
 ### Set up an ESLint config file
@@ -233,6 +241,8 @@ Add the bash command "lint" in your NPM scripts section of your package.json fil
 
 You can test this by running the command: `yarn lint`.
 Note: Your IDE might also have an extension for ESLint. Good idea to install the extension.
+
+
 
 ## Add NPM Scripts
 
