@@ -26,7 +26,7 @@ Here's an outline of what we need to do.
 
 [Node](https://nodejs.org/en/download/) is a server framework that allows for asynchronous JavaScript programming on the server. Node files (.js files) must be initiated in the command line. You can include modules in your application. NPM (a package manager for Node) is included with Node.js.
 
-First make sure Node.js is installed. Either install via the website above or if you have Homebrew installed on your machine, just run the following:
+First make sure Node.js is installed. Either install via the website above or you can install via Homebrew. The LTS version is recommended and should be supported for at least 2 years. The current version will include the latest but might have a few things that are unstable. It's recommended to use the LTS version for production.
 
     $ brew install node
 
@@ -237,6 +237,23 @@ Create a file in your root directory named `.eslintrc.json`.
 Fill it with the config code setup from this [.eslintrc.json example file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.eslintrc.json).
 Add the bash command "lint" in your NPM scripts section of your package.json file.
 
+You should also install extra plugins that will allow prettier and eslint to work well together.
+
+- **eslint-config-prettier** - *integrates prettier with eslint and turns off rules taht conflict or are unnecessary*
+- **eslint-plugin-prettier** - *lets you run prettier as if its a linter rule*
+- **eslint-plugin-import** - *checks to make sure import paths are correct*
+- **eslint-plugin-jsx-a11y** - *adds accessibility checks when turned on*
+- **eslint-plugin-react** - *adds react specific linting rules*
+
+In the .eslintrc.json file, add to extends array:
+
+- "eslint:recommended",
+- "plugin:react/recommended",  allows for eslint to recognize imports of components
+- "plugin:import/errors", allows eslint to throw error if it cant find import path
+- "plugin:jsx-a11y/recommended", allows eslint to display accessibility violations
+- "plugin:prettier/recommended", allows eslint to get along w/prettier
+
+
 ### Linting Files
 
 There are several strategies for linting files:
@@ -249,6 +266,10 @@ There are several strategies for linting files:
 
     "lint": "eslint \"src/\*_/_.{js,jsx}\""
     $ yarn run lint
+
+### Create ignore files for Prettier and ESLint
+
+You don't want to lint all files or have prettier format every file either. To avoid this, create ignore config files. Refer to the `.eslintignore` file and the `.prettierignore` file in this repo.
 
 ## Add NPM Scripts
 
