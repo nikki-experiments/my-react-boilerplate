@@ -22,19 +22,17 @@ Here's an outline of what we need to do.
 - [Setup Hot Module Replacement](#setup-hot-module-replacement)
 - [Other Tools](#other-tools)
 
-
 ## Install/Update Node.js
 
-Node is a server framework that allows for asynchronous JavaScript programming on the server. Node files (.js files) must be initiated in the command line. You can include modules in your application. NPM (a package manager for Node) is included with Node.js.
+[Node](https://nodejs.org/en/download/) is a server framework that allows for asynchronous JavaScript programming on the server. Node files (.js files) must be initiated in the command line. You can include modules in your application. NPM (a package manager for Node) is included with Node.js.
 
-First make sure Node.js is installed. With Homebrew just run the following:
+First make sure Node.js is installed. Either install via the website above or if you have Homebrew installed on your machine, just run the following:
 
     $ brew install node
 
 Verify you have node installed: `node -v`
 Verify you have npm installed: `npm -v`
 
-Note 1: I didn't have issues but if you do, don't use homebrew and install node manually.
 Note 2: If you need to use different node versions on your machine install [nvm](https://github.com/creationix/nvm) (node version manager). Verify it's installed by running: `command -v nvm`.
 Use this [web page](https://davidwalsh.name/nvm) to learn how to easily use nvm.
 
@@ -45,9 +43,9 @@ How to upgrade to the [latest version of Node](https://flaviocopes.com/how-to-up
 NPM comes installed with Node.js.
 To update npm to the latest version run: `npm install -g npm@latest`
 
-## Install Yarn Globally
+## Install Yarn
 
-When NPM 4 was the latest, Yarn was a must because it produced a yarn.lock file that NPM didn't have. There was no need to use messy shrinkwrap files. Instead Yarn locked down your dependencies for easy management. Now that NPM 5 is in use, the only real benefit of Yarn is that it still builds dependencies faster than NPM and it's 100% deterministic. I've used both w/equal success so check w/your teams preference.
+A benefit Yarn over the default package manager NPM is that it still builds dependencies faster than NPM and it's 100% deterministic. Check w/your teams preference on which to use.
 
     $ npm install --global yarn
 
@@ -77,6 +75,7 @@ Create-react-app includes a mini web server, Babel, and Webpack. It also watches
 To deploy to production run `npm run build` to create an optimized build of your app in the build folder.
 
 If you want to add to the configuration tools, you can eject create-react-app by running the following script. Beware, that this can't be undone.
+
 ```
 npm run eject
 ```
@@ -126,7 +125,6 @@ When it's time to build your production files do this:
 Parcel will compile, minify and bundle all your final production files.
 After this move on to the step for installing Babel for transpiling your code from ES6 down to readable ES5.
 
-
 ### Manual Project Configuration (Webpack/Babel)
 
 You may find that your project needs custom configuration of the setup files. In that case you'd need to setup the React build tools manually. Follow the remaining sections in order to do that.
@@ -142,21 +140,21 @@ For new projects:
 For existing projects:
 
 - Run `git clone path-to-project` to pull down the repo files to your local directory.
-- Run the following to add module dependencies listed in the package.json file. A package-lock.json  or yarn.lock will be created.
+- Run the following to add module dependencies listed in the package.json file. A package-lock.json or yarn.lock will be created.
 
   Run: `yarn` or `npm install`
 
 Save a new dependency:
 
-  Run: `yarn add <package name>` or `npm install <package name>`
+Run: `yarn add <package name>` or `npm install <package name>`
 
-  Add `--dev` or `-D` to this command to save to devDependencies.
+Add `--dev` or `-D` to this command to save to devDependencies.
 
 ## Install React and ReactDom
 
 For any new React projects the default packages needed are the following:
 
-  Run: `yarn add react react-dom` or `npm install react react-dom`
+Run: `yarn add react react-dom` or `npm install react react-dom`
 
 Other packages I use with my projects can be found in my [package.json file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/package.json).
 
@@ -197,7 +195,7 @@ These modules will be installed inside your node_modules folder.
 
 ### Global Installs
 
-*There is an option to install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project. However, when developing in companies this might not be the best workflow.*
+_There is an option to install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project. However, when developing in companies this might not be the best workflow._
 
 ### Add VScode Extension
 
@@ -208,8 +206,8 @@ In VScode, add the following extensions:
 
 Open VScode settings (CMD+SHIFT+P) add the following:
 
-	"prettier.requireConfig": true,
-	"editor.formatOnSave": true,
+    "prettier.requireConfig": true,
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
 
 The requireConfig means that if a project has the .prettierrc file, run formatting. If it doesn't, then it won't format your files.
@@ -221,18 +219,17 @@ You can set up a prettier config file so that each time you save your file, pret
 
 To create your config file:
 
-	$ touch .prettierrc
+    $ touch .prettierrc
     // add empty object to the file for prettier defaults {}
 
-*Note: There is an order of precedence when naming your config file. For example, .prettierrc will take precedence over .prettierrc.json. We can use JSON for both of those. Refer to [prettier config documentation](https://prettier.io/docs/en/configuration.html).*
+_Note: There is an order of precedence when naming your config file. For example, .prettierrc will take precedence over .prettierrc.json. We can use JSON for both of those. Refer to [prettier config documentation](https://prettier.io/docs/en/configuration.html)._
 
 ### Format onSave vs NPM Scripts
 
-If you don't want to format every time you save then add a script to run Prettier in package.json: "format": "prettier --write \"src/**/* .{js,jsx,css,json}\""
+If you don't want to format every time you save then add a script to run Prettier in package.json: "format": "prettier --write \"src/\*_/_ .{js,jsx,css,json}\""
 Then to format your files type:
 
     $ npm run format [(optional) specific file name]
-
 
 ### Configuring ESLint
 
@@ -240,10 +237,18 @@ Create a file in your root directory named `.eslintrc.json`.
 Fill it with the config code setup from this [.eslintrc.json example file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.eslintrc.json).
 Add the bash command "lint" in your NPM scripts section of your package.json file.
 
-You can test this by running the command: `yarn lint`.
-Note: Your IDE might also have an extension for ESLint. Good idea to install the extension.
+### Linting Files
 
+There are several strategies for linting files:
 
+- Manually lint files:
+
+    $ eslint [options] file.js [file.js] [dir]
+
+- Create npm lint script in package.json:
+
+    "lint": "eslint \"src/\*_/_.{js,jsx}\""
+    $ yarn run lint
 
 ## Add NPM Scripts
 
@@ -258,7 +263,7 @@ The word on the left can be anything you want but these are standard ones. The c
      }
 
 To run this on command line for example,
-  Run: `yarn build` or `$ npm run build` which will run webpack.
+Run: `yarn build` or `$ npm run build` which will run webpack.
 
 For special words like "test" and "start" running `npm test` or `npm t` will also work.
 Use the npm scripts from the package.json template file.
@@ -277,7 +282,7 @@ These are the basic modules needed for Babel to compile ES6 and JSX code down to
 ### Write config file for Babel
 
 Now create a new file named `.babelrc` in the root directory.
-Add the config code from the [Babel website](https://babeljs.io/docs/en/babel-preset-react#docsNav) and add appropriate presets for React. Presets are groups of plugins. Plugins are the transformation tools. The *env* transformation will convert ES6 JavaScript to standard JavaScript that's compatible with all browsers and the *react* transformation will compile JSX code down to createElement() function calls.
+Add the config code from the [Babel website](https://babeljs.io/docs/en/babel-preset-react#docsNav) and add appropriate presets for React. Presets are groups of plugins. Plugins are the transformation tools. The _env_ transformation will convert ES6 JavaScript to standard JavaScript that's compatible with all browsers and the _react_ transformation will compile JSX code down to createElement() function calls.
 
 ### Polyfilling
 
@@ -330,10 +335,11 @@ Now all you need to do is add the file path to your bundle file in your main htm
 You could add this command to your npm scripts. However it will get even longer once you add Babel.
 Instead of running longer commands like this, you can create a webpack config file to handle it for you.
 
-Create a new *webpack.config.js* file in the project root directory.
+Create a new _webpack.config.js_ file in the project root directory.
 Fill out the config based on this [webpack config template](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/webpack.config.js).
 
 EXPLANATION OF CONFIG FILE:
+
 - Context: sets the root directory.
 - Entry: is the file where the bundler starts the bundling process (index.js).
 - Output: is the filename and location where the bundled JS file will be saved.
@@ -388,9 +394,10 @@ The above is the bare minimum you need to setup to start your React project with
 With React Router you can set up routing for multiple pages of your application.
 
 The basic steps to using React Router include:
-  - Choosing your router.
-  - Creating your routes.
-  - Navigating between routes using links.
+
+- Choosing your router.
+- Creating your routes.
+- Navigating between routes using links.
 
 #### Installation
 
@@ -400,6 +407,7 @@ If not already in package.json file, run:
     $ yarn add --save react-router-dom
 
 #### Choose Your Router
+
 Choose between <HashRouter> and <BrowserRouter> components.
 BrowserRouter is preferred if your server will handle dynamic requests.
 
@@ -407,6 +415,7 @@ Add BrowserRouter from your base app.js page and wrap it around your div with cl
 Set up the file path using exact path='/' component={Landing} (if Landing is the component that will load when you hit the home page). There are more specifics that you can view in the complete-intro-to-react demo files.
 
 #### History
+
 Each router creates a history object that keeps track of the current location.
 It will re-render each time this location changes.
 This object is available through React’s context.
@@ -420,17 +429,18 @@ Use Jest to set up tests for your application. In general, testing is good if yo
 
 #### Tests Setup
 
-Create a folder called '__tests__'.
+Create a folder called '**tests**'.
 Inside create a new file for a component that you want to test. Example: "Search.spec.jsx".
 Write your tests here. Add "jest": true to the "env" object of your .eslintrc file. Also add the env object with "test" to your .babelrc file similar to the example .babelrc file. This needs to be done in order to let Node understand import statements and JSX in your test file.
 
 #### Run Test
+
 Then run the following:
 
     $ NODE_ENV=test ./node_modules/.bin/jest
 
-You can also set up npm scripts for this, `yarn test`,  such as what's in the package.json file.
-If you ran a test using .toMatchSnapshot() then you will notice a folder called __snapshots__. Inside will be everything your test rendered out.
+You can also set up npm scripts for this, `yarn test`, such as what's in the package.json file.
+If you ran a test using .toMatchSnapshot() then you will notice a folder called **snapshots**. Inside will be everything your test rendered out.
 
 After you make updates to markup, you can run above command again but include a -u at the end.
 This takes updated snapshot. The next time you run it your test should pass.

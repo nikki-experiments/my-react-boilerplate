@@ -1,0 +1,10 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore these files
+*.html
+*.json
+*.md
+node_modules
+coverage
