@@ -197,7 +197,7 @@ These modules will be installed inside your node_modules folder.
 
 ### Global Installs
 
-*Note: There is an option to install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project. However, when developing in companies this might not be the best workflow.*
+*There is an option to install these tools globally if you wish to use them on all your react projects. Run the same commands above but replace -D with -g. The module will be in your Node.js path accesible from any project. Now you won't have to run the install for these tools each time you create a new project. However, when developing in companies this might not be the best workflow.*
 
 ### Add VScode Extension
 
@@ -209,7 +209,8 @@ In VScode, add the following extensions:
 Open VScode settings (CMD+SHIFT+P) add the following:
 
 	"prettier.requireConfig": true,
-	"editor.formatOnSave": true
+	"editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
 
 The requireConfig means that if a project has the .prettierrc file, run formatting. If it doesn't, then it won't format your files.
 
@@ -233,10 +234,10 @@ Then to format your files type:
     $ npm run format [(optional) specific file name]
 
 
-### Set up an ESLint config file
+### Configuring ESLint
 
-Create a file in your root directory named .eslintrc.json.
-Fill it with the config code setup from this [.eslintrc file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.eslintrc.json).
+Create a file in your root directory named `.eslintrc.json`.
+Fill it with the config code setup from this [.eslintrc.json example file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/.eslintrc.json).
 Add the bash command "lint" in your NPM scripts section of your package.json file.
 
 You can test this by running the command: `yarn lint`.
