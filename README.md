@@ -11,9 +11,8 @@ For React training:
 Here's an outline of what we need to do.
 
 - [Install Node.js](#Install/Update-Node.js)
-- [Update NPM](#update-npm-to-latest-version)
-- [Install Yarn](#install-yarn-globally)
 - [Decide Between Manual or Auto Configuration](#decide-between-manual-or-auto-configuration)
+- [Create A Folder Structure](#New-Projects-Create-A-Folder-Structure)
 - [Install Dependencies](#install-dependencies)
 - [Install React and React-Dom](#install-react-and-reactdom)
 - [Create Root Project Files](#create-root-project-files)
@@ -154,6 +153,7 @@ You may find that your project needs custom configuration of the setup files. In
 To save a new dependency: `yarn add <package name>` or `npm install <package name>`
 
 Add `--dev` or `-D` to save to devDependencies.
+
 Add `--save-dev` or `-S` to save to dependencies.
 
 1. Install React and React DOM: `npm i -S react react-dom`.
@@ -209,6 +209,52 @@ The word on the left can be anything you want but these are standard ones. The c
 To run this on command line for example,
 Run: `yarn build` or `$ npm run build` which will run webpack.
 For special words like "test" and "start" running `npm test` or `npm t` will also work.
+
+## Create React component files
+
+Add a simple file to see if React is working.
+
+In index.js
+
+```
+import React from "react";
+import ReactDOM from "react-dom";
+
+const App = () => {
+  return (
+    <div>
+      <h1>Hello!!</h1>
+      <h2>Welcome to your First React App..!</h2>
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
+```
+
+In index.html
+
+```
+<!DOCTYPE html>
+<html lang = "en">
+   <head>
+      <meta charset = "UTF-8">
+      <title>React Web</title>
+   </head>
+   <body>
+      <div id = "root"></div>
+      <script src = 'bundle.js'></script>
+   </body>
+</html>
+```
+
+Then try to start your app: `npm start`
+Your application will open at “http://localhost:8080/“
+
+If you want to try to generate a production build: `npm run build`. This will create a dist folder and inside it will create two files called bundle.js and index.html that are prod ready files.
+At this stage you've successfully configured the project with React, Webpack and Babel.
+
+[Resources](https://dev.to/shivampawar/setup-webpack-and-babel-for-a-react-js-application-24f5)
 
 ## Install Prettier and ESLint
 
