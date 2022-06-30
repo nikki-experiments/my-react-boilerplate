@@ -1,49 +1,30 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    context: __dirname,
-    entry: [
-      'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
-      './js/index.jsx'
+  entry: "./src/index.tsx",
+  devServer: {
+    port: 8080,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
     ],
-    devtool: 'cheap-eval-source-map',
-    output: {
-        path: path.join(__dirname, 'public'),
-        filename: 'bundle.js',
-        publicPath: '/public/'
-    },
-    devServer: {
-        hot: true,
-        publicPath: '/public/',
-        historyApiFallback: true
-    },
-    resolve: {
-        extensions: ['.js', '.jsx', '.json']
-    },
-    stats: {
-        colors: true,
-        reasons: true,
-        chunks: true
-    },
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NamedModulesPlugin()
-    ],
-    module: {
-        rules: [
-            {
-                enforce: 'pre',
-                test: /\.jsx?$/,
-                loader: 'eslint-loader',
-                exclude: '/node_modules'
-            },
-            {
-                test: /\.jsx?$/,
-                loader: 'babel-loader'
-            }
-        ]
-    }
+  },
+  resolve: {
+    extensions: [".tsx", ".ts", ".js"],
+  },
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "/src/index.html"),
+    }),
+  ],
 };

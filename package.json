@@ -1,63 +1,34 @@
 {
-  "scripts": {
-    "api": "node ratingsAPI.js",
-    "build": "webpack",
-    "dev": "webpack-dev-server",
-    "format": "prettier --write --single-quote --print-width=120 --no-semi --tab-width=2 \"js/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\"",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:update": "jest -u",
-    "watch": "webpack --watch"
-  },
-  "jest": {
-    "snapshotSerializers": [
-      "jest-serializer-enzyme"
-    ]
-  },
-  "dependencies": {
-    "babel-plugin-dynamic-import-webpack": "1.0.1",
-    "babel-plugin-transform-decorators-legacy": "1.3.4",
-    "babel-register": "6.24.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-redux": "7.2.5",
-    "react-router-dom": "4.1.1",
-    "redux": "3.6.0",
-    "redux-thunk": "2.2.0",
-    "styled-components": "5.3.1",
-    "webpack": "5.58.2",
-    "webpack-dev-middleware": "5.2.1",
-    "webpack-hot-middleware": "2.25.1"
-  },
-  "devDependencies": {
-    "babel-core": "6.24.1",
-    "babel-eslint": "7.2.3",
-    "babel-loader": "7.0.0",
-    "babel-plugin-dynamic-import-node": "1.0.2",
-    "babel-plugin-syntax-dynamic-import": "6.18.0",
-    "babel-plugin-transform-class-properties": "6.24.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.24.1",
-    "babel-preset-env": "1.5.1",
-    "babel-preset-react": "6.24.1",
-    "eslint": "8.0.1",
-    "eslint-config-airbnb": "18.2.1",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-config-react": "1.1.7",
-    "eslint-loader": "4.0.2",
-    "eslint-plugin-import": "2.3.0",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "2.1.1",
-    "eslint-plugin-react": "7.0.1",
-    "prettier": "2.4.1",
-    "react-hot-loader": "3.0.0-beta.6",
-    "webpack-dev-server": "4.3.1"
-  },
   "name": "new-react-project",
-  "version": "1.0.0",
-  "description": "A React Boilerplate Project",
-  "main": "server.js",
+  "version": "1.1.0",
+  "description": "A React+TypeScript+Webpack Boilerplate",
+  "main": "index.js",
   "repository": "git@github.com:nikki-experiments/my-react-boilerplate.git",
   "author": "Nikki Purcell <nikkiblade68@yahoo.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack serve --mode development --open --hot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.2"
+  }
 }
