@@ -256,6 +256,22 @@ At this stage you've successfully configured the project with React, Webpack and
 
 [Resources](https://dev.to/shivampawar/setup-webpack-and-babel-for-a-react-js-application-24f5)
 
+## Install TypeScript
+
+[TypeScript](https://www.typescriptlang.org/) is a strongly typed superset of JavaScript which uses TypeScript Compiler to compile it into plain JavaScript.
+
+1. Install TypeScript and packages: `npm i -D typescript ts-loader @types/node @types/react @types/react-dom`
+
+- **typescript** package is main engine for TypeScript.
+- **ts-loader** is loader for Webpack that integrates TypeScript in Webpack. This will convert files with .ts extension into .js files and bundle it.
+- **@types/node**, **@types/react** and **@types/react-dom** contains the type definitions required for node, react and react dom.
+
+## Configure TypeScript and Webpack
+
+1. Create tsconfig.json file to the root directory.
+2. Update webpack to support TypeScript. This should already be from instructions above.
+
+[Resources](https://dev.to/shivampawar/setup-react-application-using-typescript-and-webpack-2kn6)
 ## Install Prettier and ESLint
 
 ### Install as dev dependency vs VScode extension
