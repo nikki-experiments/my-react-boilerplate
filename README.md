@@ -1,10 +1,12 @@
-# React Project Setup
+# React + TypeScript + Webpack Project Setup
 
 So your about to create a new React project! How fun.
 
-When I'm creating a simple small React project mainly for a quick demo I'll use [create-react-app](https://create-react-app.dev/docs/getting-started). If I'm building something where I need a few more tools I might follow the steps below and use [Parceljs](https://parceljs.org/) as my no-config bundler instead of Webpack. However if I wanted to build something with full scalability I would use webpack and follow the steps below.
+When I'm creating a simple small [React](https://facebook.github.io/react/) project mainly for demo purposes I'll use [create-react-app](https://create-react-app.dev/docs/getting-started). If I'm building something where I need a few more tools I might follow the steps below and use [Parceljs](https://parceljs.org/) as my no-config bundler instead of Webpack. However webpack now offers no config options too. Most of the time if my project is something I want to scale in the future I'll just use React + Typescript + Webpack.
 
-Follow these steps to get your [React](https://facebook.github.io/react/) project up and running quickly. A special thanks to Frontend Masters for the [Intro to react class](https://github.com/btholt/complete-intro-to-react/tree/start). [React Notes](https://btholt.github.io/complete-intro-to-react/)
+For React training:
+- [Complete Intro to React V6 and Intermediate React V3](https://btholt.github.io/complete-intro-to-react-v6/)
+- [Complete Intro to React V6 Transcripts](https://frontendmasters.com/courses/complete-react-v6/)
 
 Here's an outline of what we need to do.
 
@@ -43,9 +45,9 @@ How to upgrade to the [latest version of Node](https://flaviocopes.com/how-to-up
 NPM comes installed with Node.js.
 To update npm to the latest version run: `npm install -g npm@latest`
 
-## Install Yarn
+## If using Yarn - Install
 
-A benefit Yarn over the default package manager NPM is that it still builds dependencies faster than NPM and it's 100% deterministic. Check w/your teams preference on which to use.
+Check with your team if they prefer to use npm or Yarn. A benefit Yarn over the default package manager NPM is that it still builds dependencies faster than NPM and it's 100% deterministic.
 
     $ npm install --global yarn
 
@@ -59,7 +61,7 @@ You have two choices to set up your project. You can create a simple app with a 
 
 ### Create-React-App:
 
-Again, this is for quick POC single page apps that are NOT meant to scale. It doesn't handle backend logic or databases, so you can use it w/any backend you want. It just creates a front end build pipeline. To deploy to production you can use
+Again, this is for quick POC single page apps that are NOT meant to scale. It doesn't handle backend logic or databases, so you can use it w/any backend you want. It just creates a front end build pipeline.
 
 First navigate to your desired project directory.
 
@@ -81,6 +83,8 @@ npm run eject
 ```
 
 ### Parcel.js
+
+Note: Refer to [Parcel](https://parceljs.org/) documentation for the latest how to instructions.
 
 Parcel is a no-config bundler that can help you get a project up and running quickly. To use, you would create your repo normally using `npm init` to create package.json files. Then you can install it as a dev dependency in your project. In case you have problems installing parcel, use sudo to enter username/password.
 
@@ -129,49 +133,82 @@ After this move on to the step for installing Babel for transpiling your code fr
 
 You may find that your project needs custom configuration of the setup files. In that case you'd need to setup the React build tools manually. Follow the remaining sections in order to do that.
 
-## Install Dependencies
-
-For new projects:
-
-- In the root directory for that project run the following to create a new node_modules directory and package.json file.
-
-  Run: `yarn init` or `npm init`
-
-For existing projects:
+## Setting Up Existing Projects
 
 - Run `git clone path-to-project` to pull down the repo files to your local directory.
 - Run the following to add module dependencies listed in the package.json file. A package-lock.json or yarn.lock will be created.
 
   Run: `yarn` or `npm install`
 
-Save a new dependency:
+## New Projects - Create A Folder Structure
 
-Run: `yarn add <package name>` or `npm install <package name>`
+1. Create a folder with your application name `mkdir my-app`.
+2. Navigate to the folder in VScode terminal. `cd my-app`
+3. Run `npm init -y` to initialize the project. This creates a new node_modules directory and package.json file and the -y flag will default all the questions for the package.json. You can update the name, version, etc manually later.
+4. Create an src folder inside your project. `mkdir src`
+5. Create two index files `touch src/index.html src/index.js`
+6. Create two root config files: `touch .babelrc webpack.config.js`
 
-Add `--dev` or `-D` to this command to save to devDependencies.
+## Install React, Babel and Webpack
 
-## Install React and ReactDom
+To save a new dependency: `yarn add <package name>` or `npm install <package name>`
 
-For any new React projects the default packages needed are the following:
+Add `--dev` or `-D` to save to devDependencies.
+Add `--save-dev` or `-S` to save to dependencies.
 
-Run: `yarn add react react-dom` or `npm install react react-dom`
+1. Install React and React DOM: `npm i -S react react-dom`.
+2. Install Babel as a dev dependency: `npm i -D babel-core babel-loader babel-preset-env babel-preset-react`
 
-Other packages I use with my projects can be found in my [package.json file](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/package.json).
+- **babel-core**: It is the main engine package for the babel.
+- **babel-loader**: Loader will transpiles the react JSX code in backward compatible js code with the help of babel and webpack.
+- **babel-preset-env**: Add support to ES5/ES6 JavaScript.
+- **babel-preset-react**: Add support for React JSX code. Note: babel-loader8.* requires babel7.. If you’d like to use babel6.. You should install babel-loader.7.*
 
-## Create Root Project Files
+3. Install Webpack: `npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin`
 
-1. Create 2 folders in root: src and public. (the third should be the node modules folder).
-2. Create an index.html and make sure it has at least one div with id="root". Add script tag with src="js/bundle.js" Move this to the public folder.
-3. Create an index.js file. This will contain your import statements for react and react-dom {render}. Move this to the src folder.
-4. To set up your first component in the index.js file add:
+- **webpack**: Main engine for the webpack plugins.
+- **webpack-cli**: Provides a command line tool for setting up webpack and it’s plugins.
+- **webpack-dev-server**: This will help us to develop a live server for your application.
+- **html-webpack-plugin**: Help to create a HTML template for your application.
+
+## Configuring Babel
+
+[Babel](https://babeljs.io/docs/en/usage) takes es6 (future JavaScript) and compiles it down to es5 (current JavaScript), the version currently supported on the majority of browsers.
+
+Paste the following in your .babelrc file:
 
 ```
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-const App = <h1>Hello World</h1>
-ReactDOM.render(App, document.getElementById('root'));
+{"presets":["env", "react"]}
 ```
+
+## Configuring Webpack
+
+[Webpack](https://webpack.github.io/docs/list-of-loaders.html) takes all components that you’ve created puts it together in one bundled JavaScript file and makes it available to send down. That way you can break huge projects down to smaller more manageable modules.
+
+Copy and paste the code from this repo's webpack.config.js file.
+
+- **entry**: Here we will define entry point of our application. From this point webpack will start bundling.
+- **output**: We will define the location where the bundled file will reside. i.e., at /dist/bundle.js
+- **devServer**: Here development server related configurations present like we provided port number 8080 for development server.
+- **test**: We define some regular expression that define which files will pass through which loader.
+- **exclude**: Define files that should be excluded by loader.
+- **loader**: Define the loaders here which we are going to use.
+
+## Add NPM Scripts
+
+Open your package.json file and add bash commands to make your longer commands shorter and easier to remember.
+The word on the left can be anything you want but these are standard ones. The command on the right is what will actually run.
+
+```
+    "scripts": {
+        "start": "webpack serve --mode development --open --hot",
+        "build": "webpack --mode production"
+     }
+```
+
+To run this on command line for example,
+Run: `yarn build` or `$ npm run build` which will run webpack.
+For special words like "test" and "start" running `npm test` or `npm t` will also work.
 
 ## Install Prettier and ESLint
 
@@ -253,7 +290,6 @@ In the .eslintrc.json file, add to extends array:
 - "plugin:jsx-a11y/recommended", allows eslint to display accessibility violations
 - "plugin:prettier/recommended", allows eslint to get along w/prettier
 
-
 ### Linting Files
 
 There are several strategies for linting files:
@@ -270,40 +306,6 @@ There are several strategies for linting files:
 ### Create ignore files for Prettier and ESLint
 
 You don't want to lint all files or have prettier format every file either. To avoid this, create ignore config files. Refer to the `.eslintignore` file and the `.prettierignore` file in this repo.
-
-## Add NPM Scripts
-
-Open your package.json file and add bash commands to make your longer commands shorter and easier to remember.
-The word on the left can be anything you want but these are standard ones. The command on the right is what will actually run.
-
-    "scripts": {
-        "build": "webpack --mode production",
-        "dev": "webpack-dev-server --mode development",
-        "start": "node server.js"
-        "lint": "eslint --ignore-path .gitignore --cache ./"
-     }
-
-To run this on command line for example,
-Run: `yarn build` or `$ npm run build` which will run webpack.
-
-For special words like "test" and "start" running `npm test` or `npm t` will also work.
-Use the npm scripts from the package.json template file.
-
-## Install Babel
-
-Babel takes es6 (future JavaScript) and compiles it down to es5 (current JavaScript), the version currently supported on the majority of browsers.
-
-Install by addding the dev dependencies below:
-
-    $ npm i --save-dev @babel/core @babel/preset-env @babel/cli
-    $ npm i --save @babel/polyfill
-
-These are the basic modules needed for Babel to compile ES6 and JSX code down to standard JavaScript. However, check the [Babel website](https://babeljs.io/docs/en/usage) for the latest versions to install.
-
-### Write config file for Babel
-
-Now create a new file named `.babelrc` in the root directory.
-Add the config code from the [Babel website](https://babeljs.io/docs/en/babel-preset-react#docsNav) and add appropriate presets for React. Presets are groups of plugins. Plugins are the transformation tools. The _env_ transformation will convert ES6 JavaScript to standard JavaScript that's compatible with all browsers and the _react_ transformation will compile JSX code down to createElement() function calls.
 
 ### Polyfilling
 
@@ -327,75 +329,9 @@ Then import in script.js
 import 'regenerator-runtime/runtime';
 ```
 
-## Install Webpack
-
-Webpack takes all components that you’ve created puts it together in one bundled JavaScript file and makes it available to send down. That way you can break huge projects down to smaller more manageable modules.
-
-To install:
-
-    $ yarn add webpack (or run $ npm install --global webpack)
-
-You can also add the following dependencies: webpack-dev-server and html-webpack-plugin.
-
-Now you could run a command to convert your React files into your final js file. Make sure you are in your project's root directory.
-
-To build an exported js file:
-
-    $ webpack js/Clientapp.js public/bundle.js
-
-In this example the first file webpack is going to see is js/Clientapp.js. The output file will be public/bundle.js.
-The bundle.js file will be pretty large. That is why you should run a separate build for production. This one should be minified, gzipped.
-
-For a Produciton build, run:
-
-    $ webpack -p js/Clientapp.js public/bundle.js
-
-### Write config file for Webpack
-
-Now all you need to do is add the file path to your bundle file in your main html file.
-You could add this command to your npm scripts. However it will get even longer once you add Babel.
-Instead of running longer commands like this, you can create a webpack config file to handle it for you.
-
-Create a new _webpack.config.js_ file in the project root directory.
-Fill out the config based on this [webpack config template](https://github.com/nikki-experiments/my-react-boilerplate/blob/master/webpack.config.js).
-
-EXPLANATION OF CONFIG FILE:
-
-- Context: sets the root directory.
-- Entry: is the file where the bundler starts the bundling process (index.js).
-- Output: is the filename and location where the bundled JS file will be saved.
-- Devtool: Uses source maps.
-- Resolve: Tells webpack which files to add to bundle and in a particular order.
-- Stats: Info configuration.
-- Module: specifies a regular expression that runs Babel transformations only for js files.
-- Loaders: are transformations applied on a file in our app. The key property takes on an array of loaders.
-- Plugins: contains any special operations we want performed during the build process.
-
-Check the [Webpack documentation](https://webpack.github.io/docs/list-of-loaders.html) for more potential loaders you can use.
-
-### Set bash commands for Webpack
-
-Create a bash command "build": "webpack" in npm scripts for webpack. It will know to use the config file settings.
-Test the command by running `yarn build` or `npm run build`.
-
-Now instead of building every time you make a change, set up the watcher bash command to build every time you save your files.
-Add "start": "webpack --watch" to your package.json scripts.
-
-### Setup Webpack Dev Server
-
-You don't want to use the file protocol, but we do need a static file server. To do this install webpack-dev-server. It should be in your package.json file. Also open webpack config file and add the devServer entry. '/public/' represents the path on the server.
-
-When this is run, it will run a dev server on host 8080, serve files from '/public/', and also run watch which will bundle output your files each time you save. To do this run:
-
-    $ ./node_modules/.bin/webpack-dev-server
-
-Make sure you stop watch before running this. This will start watch again anyway.
-Make it easy to run by adding "dev" to your package.json npm scripts.
-To run: `yarn dev`
-
 ## Setup Hot Module Replacement
 
-When Hot Module Replacement is setup, you won't have to continually rebuild your files to see changes made to code after you've saved your file. You will be able to save your current state while only the thing you changed gets updated and all without a hard refresh of the page. This makes for incredibly faster development. Yay!
+[DEPRECATED?] When Hot Module Replacement is setup, you won't have to continually rebuild your files to see changes made to code after you've saved your file. You will be able to save your current state while only the thing you changed gets updated and all without a hard refresh of the page. This makes for incredibly faster development. Yay!
 
 To set up HMR, open webpack file and 1) import webpack 2) change the entry object to array and add to it 3) add to devServer object 4) then add the new plugins array. Also set publicPath to the output object.
 
