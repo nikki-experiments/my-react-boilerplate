@@ -34,10 +34,19 @@ First make sure Node.js is installed. Either install via the website above or yo
 Verify you have node installed: `node -v`
 Verify you have npm installed: `npm -v`
 
-Note 2: If you need to use different node versions on your machine install [nvm](https://github.com/creationix/nvm) (node version manager). Verify it's installed by running: `command -v nvm`.
-Use this [web page](https://davidwalsh.name/nvm) to learn how to easily use nvm.
+## NVM to Install Node
 
-How to upgrade to the [latest version of Node](https://flaviocopes.com/how-to-update-node/).
+To use different node versions on your machine install [nvm](https://github.com/creationix/nvm) (node version manager). Verify it's installed by running: `command -v nvm`.
+
+To install the latest version of node:
+
+    $ nvm install node
+
+To install a specific version of node:
+
+    $ nvm install node 10.16.0
+
+For more info on nvm go to this [page](https://davidwalsh.name/nvm).
 
 ## Update NPM to latest version
 
